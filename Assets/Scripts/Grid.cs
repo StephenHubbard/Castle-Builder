@@ -12,9 +12,9 @@ public class Grid<TGridObject> {
         public int y;
     }
 
-    private int width;
-    private int height;
-    private float cellSize;
+    public int width;
+    public int height;
+    public float cellSize;
     private Vector3 originPosition;
     private TGridObject[,] gridArray;
 
@@ -46,9 +46,9 @@ public class Grid<TGridObject> {
             Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 100f);
             Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
 
-            OnGridObjectChanged += (object sender, OnGridObjectChangedEventArgs eventArgs) => {
-                debugTextArray[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y]?.ToString();
-            };
+            // OnGridObjectChanged += (object sender, OnGridObjectChangedEventArgs eventArgs) => {
+            //     debugTextArray[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y]?.ToString();
+            // };
         }
     }
 
@@ -81,7 +81,7 @@ public class Grid<TGridObject> {
     }
 
     public void TriggerGridObjectChanged(int x, int y) {
-        // if (OnGridObjectChanged != null) OnGridObjectChanged(this, new OnGridObjectChangedEventArgs { x = x, y = y });
+        if (OnGridObjectChanged != null) OnGridObjectChanged(this, new OnGridObjectChangedEventArgs { x = x, y = y });
     }
 
     public void SetGridObject(Vector3 worldPosition, TGridObject value) {

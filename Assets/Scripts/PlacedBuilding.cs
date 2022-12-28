@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlacedBuilding : MonoBehaviour {
 
+    private BuildingSO placedObjectTypeSO;
+    private Vector2Int origin;
+
     public static PlacedBuilding Create(Vector3 worldPosition, Vector2Int origin, BuildingSO placedObjectTypeSO) {
         Transform placedObjectTransform = Instantiate(placedObjectTypeSO.prefab, worldPosition, Quaternion.identity);
 
@@ -14,10 +17,7 @@ public class PlacedBuilding : MonoBehaviour {
         return placedObject;
     }
 
-    private BuildingSO placedObjectTypeSO;
-    private Vector2Int origin;
-
-    private void Setup(BuildingSO placedObjectTypeSO, Vector2Int origin) {
+    public void Setup(BuildingSO placedObjectTypeSO, Vector2Int origin) {
         this.placedObjectTypeSO = placedObjectTypeSO;
         this.origin = origin;
     }

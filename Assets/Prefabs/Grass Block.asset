@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Grass Block
   prefab: {fileID: 2896675779485928035, guid: 02b5600727fb42a46a453b111d99804a, type: 3}
-  visual: {fileID: 2896675779485928035, guid: 02b5600727fb42a46a453b111d99804a, type: 3}
+  visual: {fileID: 2896675779485928035, guid: 21ca19a6023cb72478046a45cda7d73b, type: 3}
   width: 1
   height: 1

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: Hallway
   prefab: {fileID: 2426650700516053590, guid: 80cfc33dad3d99c42a3459d756e1d46f, type: 3}
-  visual: {fileID: 2426650700516053590, guid: 80cfc33dad3d99c42a3459d756e1d46f, type: 3}
+  visual: {fileID: 2426650700516053590, guid: 556fe402834b5fb45b6ed48bdfbbd9c1, type: 3}
   width: 4
   height: 3
