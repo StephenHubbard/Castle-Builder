@@ -119,8 +119,6 @@ public class BuildManager : Singleton<BuildManager>
 
             GridGeneration.Instance.ReturnGrid().GetXY(UtilsClass.GetMouseWorldPosition(), out int x, out int y);
 
-            if (GridGeneration.Instance.ReturnGrid().GetGridObject(x, y) == null) { return; }
-
             Vector2Int placedObjectOrigin = new Vector2Int(x, y);
 
             List<Vector2Int> gridPositionList = buildingSO.GetGridPositionList(new Vector2Int(x, y));
@@ -131,9 +129,11 @@ public class BuildManager : Singleton<BuildManager>
             // occupied tiles
             foreach (Vector2Int gridPosition in gridPositionList)
             {
-                if (!GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y).CanBuild()) {
-                    canBuild = false;
-                    break;
+                if (GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y) != null) {
+                    if (!GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y).CanBuild()) {
+                        canBuild = false;
+                        break;
+                    }
                 } else {
                     UtilsClass.CreateWorldTextPopup("Out of bounds", UtilsClass.GetMouseWorldPosition());
                     canBuild = false;
@@ -144,9 +144,13 @@ public class BuildManager : Singleton<BuildManager>
             // check if tiles below are grounded/occupied
             foreach (Vector2Int gridPosition in groundedList)
             {
-                canBuild = false;
-                UtilsClass.CreateWorldTextPopup("Must be grounded", UtilsClass.GetMouseWorldPosition());
-                break;
+                if (GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y) != null) {
+                    if (GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y).GetPlacedBuilding() == null) {
+                        canBuild = false;
+                        UtilsClass.CreateWorldTextPopup("Must be grounded", UtilsClass.GetMouseWorldPosition());
+                        break;
+                    } 
+                }
             }
             
             if (canBuild) {
@@ -156,7 +160,9 @@ public class BuildManager : Singleton<BuildManager>
 
                 foreach (Vector2Int gridPosition in gridPositionList)
                 {
-                    GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
+                    if (GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y) != null) { 
+                        GridGeneration.Instance.ReturnGrid().GetGridObject(gridPosition.x, gridPosition.y).SetPlacedObject(placedObject);
+                    }
 
                 }
             } else {
