@@ -121,8 +121,12 @@ public class BuildManager : Singleton<BuildManager>
 
             Vector2Int placedObjectOrigin = new Vector2Int(x, y);
 
+            if (GridGeneration.Instance.ReturnGrid().GetGridObject(x, y) == null) { return; }
+            
             List<Vector2Int> gridPositionList = buildingSO.GetGridPositionList(new Vector2Int(x, y));
             List<Vector2Int> groundedList = buildingSO.GetGroundedList(new Vector2Int(x, y));
+
+
 
             bool canBuild = true;
 
