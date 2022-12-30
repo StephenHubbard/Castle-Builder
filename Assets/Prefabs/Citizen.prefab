@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1252036513427613394}
   - component: {fileID: 7014190077098087594}
   - component: {fileID: -7076854568328228585}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Citizen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5469489eecc1c0d48927fe4ace21be01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104,11 +104,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1ca02402f67f6454a938bc5e3a406c96, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!70 &1252036513427613394
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,8 +122,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03}
-  m_Size: {x: 0.52, y: 0.7}
+  m_Offset: {x: -0.04113865, y: 0.04234165}
+  m_Size: {x: 0.52000046, y: 0.6753167}
   m_Direction: 0
 --- !u!114 &7014190077098087594
 MonoBehaviour:

@@ -6,10 +6,11 @@ public class Citizen : MonoBehaviour
 {
     private enum State {
         Roaming, 
-        GoingBackToStart,
+        // GoingBackToStart,
     }
 
     private State state;
+
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private float timeRoaming = 0f;
@@ -49,17 +50,17 @@ public class Citizen : MonoBehaviour
             }
             break;
 
-        case State.GoingBackToStart:
+        // case State.GoingBackToStart:
 
-            pathfinding.MoveTo(startingPosition);
+        //     pathfinding.MoveTo(startingPosition);
 
-            reachedPositionDistance = 1f;
-            if (Vector3.Distance(transform.position, startingPosition) < reachedPositionDistance) {
-                state = State.Roaming;
-                StartCoroutine(RoamingCo());
+        //     reachedPositionDistance = 1f;
+        //     if (Vector3.Distance(transform.position, startingPosition) < reachedPositionDistance) {
+        //         state = State.Roaming;
+        //         StartCoroutine(RoamingCo());
 
-            }
-            break;
+        //     }
+        //     break;
         }        
     }
 
@@ -72,6 +73,7 @@ public class Citizen : MonoBehaviour
     }
 
     private Vector3 GetRoamingPosition() {
+        timeRoaming = 0f;
         return startingPosition + GetRandomDir() * Random.Range(1f, 5f);
     }
 

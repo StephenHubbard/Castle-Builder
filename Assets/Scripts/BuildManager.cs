@@ -121,12 +121,10 @@ public class BuildManager : Singleton<BuildManager>
 
             Vector2Int placedObjectOrigin = new Vector2Int(x, y);
 
-            if (GridGeneration.Instance.ReturnGrid().GetGridObject(x, y) == null) { return; }
+            if (GridGeneration.Instance.ReturnGrid().GetGridObject(x, y) == null || buildingSO == null) { return; }
             
             List<Vector2Int> gridPositionList = buildingSO.GetGridPositionList(new Vector2Int(x, y));
             List<Vector2Int> groundedList = buildingSO.GetGroundedList(new Vector2Int(x, y));
-
-
 
             bool canBuild = true;
 
@@ -174,7 +172,7 @@ public class BuildManager : Singleton<BuildManager>
             }
         }
 
-        if (Input.GetMouseButtonDown(2)) {
+        if (Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftShift)) {
             var gridObject = GridGeneration.Instance.ReturnGrid().GetGridObject(UtilsClass.GetMouseWorldPosition());
 
             PlacedBuilding placedBuilding = gridObject.GetPlacedBuilding();

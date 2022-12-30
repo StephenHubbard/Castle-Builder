@@ -12,6 +12,7 @@ public class Pathfinding : MonoBehaviour {
     private int currentPathIndex;
     private bool allowedToMove = true;
     private Rigidbody2D myRb;
+    private bool isGrounded = false;
 
     private void Awake() {
         myRb = GetComponent<Rigidbody2D>();
@@ -23,7 +24,7 @@ public class Pathfinding : MonoBehaviour {
 
     private void FixedUpdate() {
 
-        myRb.velocity = moveDir * moveSpeed;
+        myRb.velocity = new Vector2(moveDir.x * moveSpeed, myRb.velocity.y); 
 
         if (lastMoveDir.x < 0) {
             GetComponent<SpriteRenderer>().flipX = true;
@@ -31,6 +32,15 @@ public class Pathfinding : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = false;
         }
     }
+
+    private void OnCollisionStay(Collision other) {
+        isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision other) {
+        isGrounded = false;
+    }
+
 
     public void StopMoving() {
         moveDir = Vector3.zero;
@@ -65,7 +75,7 @@ public class Pathfinding : MonoBehaviour {
 
         if (pathVectorList != null && pathVectorList.Count > 0) {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            float reachedTargetDistance = .3f;
+            float reachedTargetDistance = .05f;
             if (Vector3.Distance(GetPosition(), targetPosition) > reachedTargetDistance) {
                 moveDir = (targetPosition - GetPosition()).normalized;
             } else {

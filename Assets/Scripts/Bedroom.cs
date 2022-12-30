@@ -5,8 +5,9 @@ using UnityEngine;
 public class Bedroom : MonoBehaviour
 {
    [SerializeField] private GameObject citizenPrefab;
+   [SerializeField] private Transform citizenSpawnPos;
 
    private void Start() {
-        Instantiate(citizenPrefab, transform.position, Quaternion.identity);    
+        Instantiate(citizenPrefab, citizenSpawnPos.position, Quaternion.identity);    
    }
 }

@@ -736,7 +736,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &488719478
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1095,6 +1095,22 @@ PrefabInstance:
     - target: {fileID: 1252036513427613393, guid: cd34269c1b6d939439d63d7a3996ab27, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252036513427613394, guid: cd34269c1b6d939439d63d7a3996ab27, type: 3}
+      propertyPath: m_Size.x
+      value: 0.52000046
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252036513427613394, guid: cd34269c1b6d939439d63d7a3996ab27, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6753167
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252036513427613394, guid: cd34269c1b6d939439d63d7a3996ab27, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.04113865
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252036513427613394, guid: cd34269c1b6d939439d63d7a3996ab27, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.04234165
       objectReference: {fileID: 0}
     - target: {fileID: 1252036513427613421, guid: cd34269c1b6d939439d63d7a3996ab27, type: 3}
       propertyPath: m_Name
