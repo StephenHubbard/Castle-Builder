@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlacedBuilding : MonoBehaviour {
 
-    private BuildingSO placedObjectTypeSO;
+    public BuildingSO placedObjectTypeSO {private set; get;}
     private Vector2Int origin;
+
+    public Vector2Int ReturnOrigin() {
+        return origin;
+    }
 
     public static PlacedBuilding Create(Vector3 worldPosition, Vector2Int origin, BuildingSO placedObjectTypeSO) {
         Transform placedObjectTransform = Instantiate(placedObjectTypeSO.prefab, worldPosition, Quaternion.identity);

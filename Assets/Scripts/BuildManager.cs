@@ -7,6 +7,7 @@ using System;
 public class BuildManager : Singleton<BuildManager>
 {
     [SerializeField] private List<BuildingSO> buildingSOList;
+    private int buildingSOIndexNum = 0;
     
     private BuildingSO buildingSO;
 
@@ -21,6 +22,7 @@ public class BuildManager : Singleton<BuildManager>
 
     private void Update() {
         PlaceBuilding();
+        DestroyBuilding();
         ToggleWhichBuilding();
 
         // Debugging
@@ -63,16 +65,36 @@ public class BuildManager : Singleton<BuildManager>
         OnSelectedChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public void ChangeIndexNum(int indexNum) {
+        buildingSO = buildingSOList[indexNum];
+        buildingSOIndexNum = indexNum;
+    }
+
 
     private void ToggleWhichBuilding() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { buildingSO = buildingSOList[0]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { buildingSO = buildingSOList[1]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { buildingSO = buildingSOList[2]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) { buildingSO = buildingSOList[3]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha5)) { buildingSO = buildingSOList[4]; RefreshSelectedObjectType(); }
-        if (Input.GetKeyDown(KeyCode.Alpha6)) { buildingSO = buildingSOList[5]; RefreshSelectedObjectType(); }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { ChangeIndexNum(0); RefreshSelectedObjectType();  }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { ChangeIndexNum(1); RefreshSelectedObjectType(); }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { ChangeIndexNum(2); RefreshSelectedObjectType(); }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) { ChangeIndexNum(3); RefreshSelectedObjectType(); }
+        if (Input.GetKeyDown(KeyCode.Alpha5)) { ChangeIndexNum(4); RefreshSelectedObjectType(); }
+        if (Input.GetKeyDown(KeyCode.Alpha6)) { ChangeIndexNum(5); RefreshSelectedObjectType(); }
+
+        if (Input.mouseScrollDelta.y > 0 && Input.GetKey(KeyCode.LeftShift) && buildingSOIndexNum > 0)
+        {
+            buildingSOIndexNum = buildingSOIndexNum - 1;
+            ChangeIndexNum(buildingSOIndexNum);
+            RefreshSelectedObjectType();
+        }
+
+        if (Input.mouseScrollDelta.y < 0 && Input.GetKey(KeyCode.LeftShift) && buildingSOIndexNum < 5)
+        {
+            buildingSOIndexNum = buildingSOIndexNum + 1;
+            ChangeIndexNum(buildingSOIndexNum);
+            RefreshSelectedObjectType();
+        }
 
         if (Input.GetMouseButtonDown(1)) { DeselectObjectType(); }
+
     }
 
     public bool CanGhostBuildingBePlaced() {
@@ -171,7 +193,9 @@ public class BuildManager : Singleton<BuildManager>
                 UtilsClass.CreateWorldTextPopup("Can't build here", UtilsClass.GetMouseWorldPosition());
             }
         }
+    }
 
+    private void DestroyBuilding() {
         if (Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftShift)) {
             var gridObject = GridGeneration.Instance.ReturnGrid().GetGridObject(UtilsClass.GetMouseWorldPosition());
 

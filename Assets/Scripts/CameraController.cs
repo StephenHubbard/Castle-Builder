@@ -107,11 +107,11 @@ public class CameraController : MonoBehaviour
     {
         float zoomAmount = 0f;
 
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0 && !Input.GetKey(KeyCode.LeftShift))
         {
             zoomAmount = -1f;
         }
-        if (Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y < 0 && !Input.GetKey(KeyCode.LeftShift))
         {
             zoomAmount = +1f;
         }
